@@ -22,14 +22,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm' # acelera instalaciones
+          cache: 'npm' # acelera instalaciones
 
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       - name: Build project
-        run: pnpm run build
+        run: npm run build
 
       # Opcional: tests si los configuras
       # - name: Run tests
-      #   run: pnpm test
+      #   run: npm test
