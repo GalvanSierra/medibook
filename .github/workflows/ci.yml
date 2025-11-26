@@ -12,31 +12,24 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x] # ← actualizado para cumplir requisito de Vite
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'npm' # acelera instalaciones
 
       - name: Install dependencies
         run: npm install
-        # si usás pnpm, podés hacer: pnpm install
 
       - name: Build project
         run: npm run build
-        # o pnpm build, según tu package.json
 
-      # Opcional: lint
-      - name: Run lint
-        run: npm run lint
-        # comentar o remover si no lo usás
-
-      # Opcional: tests (si los configuras)
-      - name: Run tests
-        run: npm test
-        # comentar o remover si no tenés tests aún
+      # Opcional: tests si los configuras
+      # - name: Run tests
+      #   run: npm test
